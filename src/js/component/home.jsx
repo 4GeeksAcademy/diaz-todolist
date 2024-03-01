@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-
+const basura= <FontAwesomeIcon icon={faTrash} />
 const Home = () => {
   const [task, setTask] = useState("");
   const [tasksList, setTasksList] = useState([]);
@@ -33,21 +35,23 @@ const Home = () => {
   };
 
   return (
-    <div className="container text-center mt-5">
-      <h1>To do List</h1>
-      <input
-        type="text"
-        placeholder="Task"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-        onKeyUp={(evt) => handleTask(evt)}
-        className="mx-auto"
-      />
+    <div>
+      <div className="container bg-primary border rounded text-center mt-5">
+        <h1 id="Titulo" className="text-white">To do List</h1>
+        <input
+          type="text"
+          placeholder="Que tienes por hacer hoy?"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          onKeyUp={(evt) => handleTask(evt)}
+          className="text-center mx-auto my-1 col w-25"
+        />
+      </div>
 
       {tasksList.map((toDo, index) => (
         <div
           key={index}
-          className="text-center mt-3"
+          className="text-center bg-white mt-1 border-bottom fs-3 "
           onMouseEnter={() => setHoverIndex(index)}
           onMouseLeave={() => setHoverIndex(-1)}
         >
@@ -66,7 +70,7 @@ const Home = () => {
                 className="btn btn-sm btn-danger ms-2"
                 onClick={() => deleteTask(index)}
               >
-                <i class="fa-solid fa-trash"></i>
+                <FontAwesomeIcon icon={faTrash} />
               </button>
             </>
           )}
